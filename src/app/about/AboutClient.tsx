@@ -36,7 +36,7 @@ export default function AboutClient() {
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 20%, rgba(184,134,11,0.08) 0%, transparent 60%)" }} />
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ تعرّف علينا ✦</motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-[#F5F5DC] mb-4" style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 900, lineHeight: 1.15, fontFamily: "'Tajawal', 'IBM Plex Sans Arabic', sans-serif" }}>من نحن في<br /><span className="gold-gradient-text">كيف الضيافة</span></motion.h1>
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-[#F5F5DC] mb-4 font-tajawal" style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 900, lineHeight: 1.15}}>من نحن في<br /><span className="gold-gradient-text">كيف الضيافة</span></motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-[#F5F5DC]/55 max-w-xl mx-auto text-sm leading-relaxed">منذ ٢٠١٦ ونحن نقدم خدمات الضيافة الفاخرة بأعلى معايير الجودة والاحترافية</motion.p>
         </div>
       </section>
@@ -44,12 +44,12 @@ export default function AboutClient() {
       {/* STORY + STATS */}
       <section className="px-4 pb-20">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative rounded-3xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
+          <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-50px" }} className="relative rounded-3xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
             <ImageWithFallback src={heroImg} alt="كيف الضيافة" className="w-full h-full object-cover" />
             <div className="absolute inset-0 img-overlay" />
           </motion.div>
-          <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <h2 className="text-[#F5F5DC] mb-5" style={{ fontSize: "clamp(1.5rem, 3.5vw, 2rem)", fontWeight: 800, fontFamily: "'Tajawal', sans-serif" }}>قصتنا</h2>
+          <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-50px" }}>
+            <h2 className="text-[#F5F5DC] mb-5" style={{ fontSize: "clamp(1.5rem, 3.5vw, 2rem)", fontWeight: 800}}>قصتنا</h2>
             <p className="text-[#F5F5DC]/55 text-sm leading-8 mb-6">بدأنا رحلتنا عام ٢٠١٦ برؤية واضحة: تقديم خدمات ضيافة فاخرة تعكس أصالة الثقافة السعودية مع لمسة عصرية مبتكرة. منذ ذلك الحين، قدمنا خدماتنا لأكثر من ٥٠٠ مناسبة، من حفلات الزفاف الفاخرة إلى الفعاليات الحكومية الكبرى.</p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
@@ -58,7 +58,7 @@ export default function AboutClient() {
                 { num: "+200", label: "عميل" },
                 { num: "100%", label: "رضا" },
               ].map((s, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="text-center p-4 rounded-2xl" style={{ background: "rgba(184,134,11,0.06)", border: "1px solid rgba(184,134,11,0.12)" }}>
+                <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ delay: i * 0.1 }} className="text-center p-4 rounded-2xl" style={{ background: "rgba(184,134,11,0.06)", border: "1px solid rgba(184,134,11,0.12)" }}>
                   <p className="gold-gradient-text" style={{ fontSize: "1.5rem", fontWeight: 900 }}>{s.num}</p>
                   <p className="text-[#F5F5DC]/50 text-xs mt-1">{s.label}</p>
                 </motion.div>
@@ -71,14 +71,14 @@ export default function AboutClient() {
       {/* VALUES */}
       <section className="py-20 px-4" style={{ background: "linear-gradient(180deg, #0d0b04 0%, #0f0f0f 100%)" }}>
         <div className="max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} className="text-center mb-14">
             <p className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ قيمنا ✦</p>
-            <h2 className="text-[#F5F5DC]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800, fontFamily: "'Tajawal', sans-serif" }}>ما يميزنا</h2>
+            <h2 className="text-[#F5F5DC]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800}}>ما يميزنا</h2>
             <div className="mt-4 rounded-full mx-auto" style={{ width: 90, height: 2, background: "linear-gradient(90deg, transparent, #B8860B 30%, #D4A017 60%, transparent)" }} />
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {values.map((v, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="card-luxury p-6 rounded-2xl text-center">
+              <motion.div key={i} initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ delay: i * 0.1 }} className="card-luxury p-6 rounded-2xl text-center">
                 <div className="w-14 h-14 rounded-xl flex items-center justify-center text-[#B8860B] mx-auto mb-5" style={{ background: "linear-gradient(135deg, rgba(184,134,11,0.12), rgba(184,134,11,0.04))", border: "1px solid rgba(184,134,11,0.2)" }}>{v.icon}</div>
                 <h3 className="text-[#F5F5DC] mb-3" style={{ fontSize: "1.05rem", fontWeight: 700 }}>{v.title}</h3>
                 <p className="text-[#F5F5DC]/50 text-sm">{v.desc}</p>
@@ -91,16 +91,16 @@ export default function AboutClient() {
       {/* TIMELINE */}
       <section className="py-20 px-4">
         <div className="max-w-3xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} className="text-center mb-14">
             <p className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ رحلتنا ✦</p>
-            <h2 className="text-[#F5F5DC]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800, fontFamily: "'Tajawal', sans-serif" }}>محطات النجاح</h2>
+            <h2 className="text-[#F5F5DC]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800}}>محطات النجاح</h2>
             <div className="mt-4 rounded-full mx-auto" style={{ width: 90, height: 2, background: "linear-gradient(90deg, transparent, #B8860B 30%, #D4A017 60%, transparent)" }} />
           </motion.div>
           <div className="relative">
             <div className="absolute top-0 bottom-0 right-6 w-px" style={{ background: "linear-gradient(180deg, transparent, rgba(184,134,11,0.3), transparent)" }} />
             <div className="space-y-8">
               {milestones.map((m, i) => (
-                <motion.div key={i} initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="flex items-start gap-6 pr-2">
+                <motion.div key={i} initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ delay: i * 0.08 }} className="flex items-start gap-6 pr-2">
                   <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center z-10" style={{ background: "linear-gradient(135deg, rgba(184,134,11,0.2), rgba(184,134,11,0.05))", border: "2px solid rgba(184,134,11,0.4)" }}>
                     <span className="text-[#B8860B] text-xs" style={{ fontWeight: 800 }}>{m.year}</span>
                   </div>
@@ -117,14 +117,14 @@ export default function AboutClient() {
       {/* TEAM */}
       <section className="py-20 px-4" style={{ background: "linear-gradient(180deg, #0f0f0f 0%, #0d0b04 100%)" }}>
         <div className="max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} className="text-center mb-14">
             <p className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ فريقنا ✦</p>
-            <h2 className="text-[#F5F5DC]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800, fontFamily: "'Tajawal', sans-serif" }}>فريق القيادة</h2>
+            <h2 className="text-[#F5F5DC]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800}}>فريق القيادة</h2>
             <div className="mt-4 rounded-full mx-auto" style={{ width: 90, height: 2, background: "linear-gradient(90deg, transparent, #B8860B 30%, #D4A017 60%, transparent)" }} />
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {team.map((t, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="card-luxury rounded-2xl overflow-hidden text-center">
+              <motion.div key={i} initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ delay: i * 0.1 }} className="card-luxury rounded-2xl overflow-hidden text-center">
                 <div className="relative h-56 overflow-hidden">
                   <ImageWithFallback src={t.img} alt={t.name} className="w-full h-full object-cover" loading="lazy" />
                   <div className="absolute inset-0 img-overlay" />
@@ -142,9 +142,9 @@ export default function AboutClient() {
       {/* CERTIFICATIONS */}
       <section className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} className="text-center mb-14">
             <p className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ اعتماداتنا ✦</p>
-            <h2 className="text-[#F5F5DC]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800, fontFamily: "'Tajawal', sans-serif" }}>الشهادات والاعتمادات</h2>
+            <h2 className="text-[#F5F5DC]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800}}>الشهادات والاعتمادات</h2>
             <div className="mt-4 rounded-full mx-auto" style={{ width: 90, height: 2, background: "linear-gradient(90deg, transparent, #B8860B 30%, #D4A017 60%, transparent)" }} />
           </motion.div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -154,7 +154,7 @@ export default function AboutClient() {
               { name: "الغرفة التجارية", icon: "🏛" },
               { name: "شريك رؤية 2030", icon: "🇸🇦" },
             ].map((cert, i) => (
-              <motion.div key={i} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="card-luxury p-5 rounded-2xl text-center">
+              <motion.div key={i} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ delay: i * 0.1 }} className="card-luxury p-5 rounded-2xl text-center">
                 <span className="text-3xl mb-3 block">{cert.icon}</span>
                 <p className="text-[#F5F5DC] text-sm" style={{ fontWeight: 600 }}>{cert.name}</p>
               </motion.div>

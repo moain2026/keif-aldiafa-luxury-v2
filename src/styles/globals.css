@@ -34,6 +34,25 @@ body {
   direction: rtl;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+/* ── Performance: GPU-accelerated animations ── */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* ── Contain paint for performance ── */
+.contain-paint {
+  contain: paint;
+}
+
+.contain-layout {
+  contain: layout;
 }
 
 /* ── Custom Scrollbar ── */

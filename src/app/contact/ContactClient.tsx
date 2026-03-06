@@ -36,7 +36,7 @@ export default function ContactClient() {
           <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", delay: 0.2 }} className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ background: "linear-gradient(135deg, rgba(37,211,102,0.2), rgba(37,211,102,0.05))", border: "2px solid rgba(37,211,102,0.4)" }}>
             <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" strokeWidth="2.5" className="w-10 h-10"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
           </motion.div>
-          <h2 className="text-[#F5F5DC] mb-3" style={{ fontSize: "1.8rem", fontWeight: 800, fontFamily: "'Tajawal', sans-serif" }}>شكراً لتواصلك!</h2>
+          <h2 className="text-[#F5F5DC] mb-3" style={{ fontSize: "1.8rem", fontWeight: 800}}>شكراً لتواصلك!</h2>
           <p className="text-[#F5F5DC]/55 text-sm mb-6">تم إرسال رسالتك عبر واتساب. فريقنا سيتواصل معك في أقرب وقت.</p>
           <button onClick={() => setSubmitted(false)} className="px-6 py-3 rounded-full text-[#B8860B] text-sm" style={{ border: "1px solid rgba(184,134,11,0.3)", fontWeight: 600 }}>إرسال رسالة أخرى</button>
         </motion.div>
@@ -52,7 +52,7 @@ export default function ContactClient() {
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 20%, rgba(184,134,11,0.08) 0%, transparent 60%)" }} />
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ تواصل معنا ✦</motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-[#F5F5DC] mb-4" style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 900, lineHeight: 1.15, fontFamily: "'Tajawal', 'IBM Plex Sans Arabic', sans-serif" }}>نسعد <span className="gold-gradient-text">بخدمتكم</span></motion.h1>
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-[#F5F5DC] mb-4 font-tajawal" style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 900, lineHeight: 1.15}}>نسعد <span className="gold-gradient-text">بخدمتكم</span></motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-[#F5F5DC]/55 max-w-xl mx-auto text-sm leading-relaxed">تواصل معنا واحصل على استشارة مجانية لتصميم تجربة ضيافة فاخرة لمناسبتك</motion.p>
         </div>
       </section>
@@ -74,7 +74,7 @@ export default function ContactClient() {
       <section className="px-4 pb-20">
         <div className="max-w-2xl mx-auto">
           <motion.form onSubmit={handleSubmit} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="p-6 sm:p-8 rounded-3xl" style={{ background: "linear-gradient(160deg, rgba(25,20,8,0.9), rgba(15,12,5,0.95))", border: "1px solid rgba(184,134,11,0.2)" }}>
-            <h2 className="text-[#F5F5DC] mb-6" style={{ fontSize: "1.3rem", fontWeight: 700, fontFamily: "'Tajawal', sans-serif" }}>أرسل لنا رسالتك</h2>
+            <h2 className="text-[#F5F5DC] mb-6" style={{ fontSize: "1.3rem", fontWeight: 700}}>أرسل لنا رسالتك</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div>
                 <label className="block text-[#F5F5DC]/50 text-xs mb-2">الاسم *</label>
@@ -119,13 +119,13 @@ export default function ContactClient() {
       {/* COVERAGE */}
       <section className="px-4 pb-20">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-10">
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} className="mb-10">
             <p className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ تغطيتنا ✦</p>
-            <h2 className="text-[#F5F5DC]" style={{ fontSize: "clamp(1.4rem, 3.5vw, 2rem)", fontWeight: 800, fontFamily: "'Tajawal', sans-serif" }}>نصل إليكم في جميع مناطق المملكة</h2>
+            <h2 className="text-[#F5F5DC]" style={{ fontSize: "clamp(1.4rem, 3.5vw, 2rem)", fontWeight: 800}}>نصل إليكم في جميع مناطق المملكة</h2>
           </motion.div>
           <div className="flex flex-wrap justify-center gap-3">
             {["الرياض", "جدة", "مكة المكرمة", "المدينة المنورة", "الدمام", "الخبر", "الطائف", "أبها", "تبوك", "حائل", "نجران", "جازان"].map((city, i) => (
-              <motion.span key={city} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="px-4 py-2 rounded-full text-sm" style={{ background: "rgba(184,134,11,0.06)", border: "1px solid rgba(184,134,11,0.15)", color: "rgba(245,245,220,0.6)" }}>{city}</motion.span>
+              <motion.span key={city} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ delay: i * 0.05 }} className="px-4 py-2 rounded-full text-sm" style={{ background: "rgba(184,134,11,0.06)", border: "1px solid rgba(184,134,11,0.15)", color: "rgba(245,245,220,0.6)" }}>{city}</motion.span>
             ))}
           </div>
         </div>

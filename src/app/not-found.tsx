@@ -12,22 +12,20 @@ export default function NotFound() {
     <div className="min-h-[80vh] flex items-center justify-center px-4">
       <div className="text-center max-w-lg">
         <h1
-          className="gold-gradient-text mb-4"
+          className="gold-gradient-text mb-4 font-tajawal"
           style={{
             fontSize: "clamp(5rem, 15vw, 10rem)",
             fontWeight: 900,
             lineHeight: 1,
-            fontFamily: "var(--font-tajawal), 'Tajawal', sans-serif",
           }}
         >
           404
         </h1>
         <h2
-          className="text-[#F5F5DC] mb-3"
+          className="text-[#F5F5DC] mb-3 font-tajawal"
           style={{
             fontSize: "1.5rem",
             fontWeight: 800,
-            fontFamily: "var(--font-tajawal), 'Tajawal', sans-serif",
           }}
         >
           الصفحة غير موجودة

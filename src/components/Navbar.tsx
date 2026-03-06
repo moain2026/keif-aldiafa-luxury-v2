@@ -18,7 +18,7 @@ const navLinks = [
 ];
 
 function useWhatsAppUrl() {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/";
   const messages: Record<string, string> = {
     "/services": "مرحباً، أود الاستفسار عن خدمات الضيافة لديكم.",
     "/offerings": "مرحباً، أود الاستفسار عن تقديماتكم وتوزيعاتكم الفاخرة.",
@@ -36,7 +36,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollDir, setScrollDir] = useState<"up" | "down">("up");
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/";
   const waUrl = useWhatsAppUrl();
 
   useEffect(() => {
