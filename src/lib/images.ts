@@ -2,7 +2,7 @@
  * Centralized image path constants for the Keif Al-Diafa website.
  * All images are served locally from public/images/.
  *
- * Source: https://github.com/manaje12/img_kef.git (236 original images)
+ * Source: https://github.com/moain2026/img_kef_updated (235 updated images)
  * Structure:
  *   hero/           → 3 images (from Event photos)
  *   events/         → 82 images (all Event photos)
@@ -54,7 +54,7 @@ export const SERVICES_MALE = {
     main: "/images/services/male/hosts/dagla/dagla-1.webp",
   },
   safarjia: Array.from({ length: 6 }, (_, i) => `/images/services/male/safarjia/safarjia-${i + 1}.webp`),
-  sawas: Array.from({ length: 9 }, (_, i) => `/images/services/male/sawas/sawas-${i + 1}.webp`),
+  sawas: Array.from({ length: 5 }, (_, i) => `/images/services/male/sawas/sawas-${i + 1}.webp`),
   souqiya: Array.from({ length: 8 }, (_, i) => `/images/services/male/souqiya/souqiya-${i + 1}.webp`),
 };
 
