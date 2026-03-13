@@ -2,14 +2,24 @@
  * Centralized image path constants for the Keif Al-Diafa website.
  * All images are served locally from public/images/.
  *
- * Source: https://github.com/moain2026/img_kef_updated (235 updated images)
+ * Sources:
+ *   - https://github.com/moain2026/img (High-res hero images 3168px)
+ *   - https://github.com/moain2026/allimg (Offerings category images)
+ *   - https://github.com/moain2026/img_kef_updated (235 service/event images)
+ *
  * Structure:
- *   hero/           → 3 images (from Event photos)
- *   events/         → 82 images (all Event photos)
- *   weddings/       → 18 images (all Wedding photos)
- *   distributions/  → 5 images
- *   equipment/      → 21 images
- *   partners/       → 36 logos
+ *   hero/              → 2 high-res images (desktop + mobile)
+ *   hot-drinks/        → 7 images (hot beverages)
+ *   cold-drinks/       → 8 images (cold beverages)
+ *   dates/             → 12 images (premium dates)
+ *   sweets/            → 6 images (desserts)
+ *   pastry/            → 5 images (pastries)
+ *   serving-equipment/ → 10 images (serving equipment)
+ *   events/            → 82 images (all Event photos)
+ *   weddings/          → 18 images (all Wedding photos)
+ *   distributions/     → 5 images
+ *   equipment/         → 21 images
+ *   partners/          → 36 logos
  *   services/male/hosts/{hizam,dagla,dagla-janbiya,sideriya,makkawi}
  *   services/male/{safarjia,sawas,souqiya}
  *   services/female/
@@ -17,12 +27,95 @@
  */
 
 // ═══════════════════════════════════════════════════════════════
-// HERO IMAGES
+// HERO IMAGES (High-res 3168px from moain2026/img)
 // ═══════════════════════════════════════════════════════════════
 export const HERO_IMAGES = {
-  main: "/images/hero/hero-1.webp",
-  secondary: "/images/hero/hero-2.webp",
-  tertiary: "/images/hero/hero-3.webp",
+  desktop: "/images/hero/hero-desktop.webp",
+  mobile: "/images/hero/hero-mobile.webp",
+};
+
+// ═══════════════════════════════════════════════════════════════
+// OFFERINGS — HOT DRINKS (7 images from moain2026/allimg)
+// ═══════════════════════════════════════════════════════════════
+export const HOT_DRINKS_IMAGES = {
+  sahlab: "/images/hot-drinks/sahlab.webp",
+  redTea: "/images/hot-drinks/red-tea.webp",
+  greenTea: "/images/hot-drinks/green-tea.webp",
+  karakTea: "/images/hot-drinks/karak-tea.webp",
+  gingerPineapple: "/images/hot-drinks/ginger-pineapple.webp",
+  turkishCoffee: "/images/hot-drinks/turkish-coffee.webp",
+  cappuccino: "/images/hot-drinks/cappuccino.webp",
+};
+
+// ═══════════════════════════════════════════════════════════════
+// OFFERINGS — COLD DRINKS (8 images, kept from original)
+// ═══════════════════════════════════════════════════════════════
+export const COLD_DRINKS_IMAGES = {
+  freshJuice: "/images/cold-drinks/fresh-juice.webp",
+  mojito: "/images/cold-drinks/mojito.webp",
+  arakSous: "/images/cold-drinks/arak-sous.webp",
+  karkade: "/images/cold-drinks/karkade.webp",
+  tamarind: "/images/cold-drinks/tamarind.webp",
+  sobia: "/images/cold-drinks/sobia.webp",
+  smoothie: "/images/cold-drinks/smoothie.webp",
+  icedLatte: "/images/cold-drinks/iced-latte.webp",
+};
+
+// ═══════════════════════════════════════════════════════════════
+// OFFERINGS — DATES (12 images from moain2026/allimg)
+// ═══════════════════════════════════════════════════════════════
+export const DATES_IMAGES = {
+  datesAssorted: "/images/dates/dates-assorted.webp",
+  khalasSesame: "/images/dates/khalas-sesame-tahini.webp",
+  khalasStuffed: "/images/dates/khalas-stuffed.webp",
+  sukariStuffed: "/images/dates/sukari-stuffed.webp",
+  stuffedDates2: "/images/dates/stuffed-dates-2.webp",
+  stuffedDates3: "/images/dates/stuffed-dates-3.webp",
+  stuffedDates5: "/images/dates/stuffed-dates-5.webp",
+  stuffedDates: "/images/dates/stuffed-dates.webp",
+  datesPlain: "/images/dates/dates-plain.webp",
+  palmKhalasStuffed: "/images/dates/palm-khalas-stuffed.webp",
+  palmSukari: "/images/dates/palm-sukari.webp",
+  palmSukariStuffed: "/images/dates/palm-sukari-stuffed.webp",
+};
+
+// ═══════════════════════════════════════════════════════════════
+// OFFERINGS — SWEETS (6 images from moain2026/allimg)
+// ═══════════════════════════════════════════════════════════════
+export const SWEETS_IMAGES = {
+  pancake: "/images/sweets/pancake.webp",
+  baklava: "/images/sweets/baklava.webp",
+  patchiChocolate: "/images/sweets/patchi-chocolate.webp",
+  bostaniChocolate: "/images/sweets/bostani-chocolate.webp",
+  chocolateCroissant: "/images/sweets/chocolate-croissant.webp",
+  kunafa: "/images/sweets/kunafa.webp",
+};
+
+// ═══════════════════════════════════════════════════════════════
+// OFFERINGS — PASTRY (5 images from moain2026/allimg)
+// ═══════════════════════════════════════════════════════════════
+export const PASTRY_IMAGES = {
+  samosa: "/images/pastry/samosa.webp",
+  fruitPie: "/images/pastry/fruit-pie.webp",
+  arabicPastry: "/images/pastry/arabic-pastry.webp",
+  assortedPastry: "/images/pastry/assorted-pastry.webp",
+  appetizers: "/images/pastry/appetizers.webp",
+};
+
+// ═══════════════════════════════════════════════════════════════
+// OFFERINGS — SERVING EQUIPMENT (10 images from moain2026/allimg)
+// ═══════════════════════════════════════════════════════════════
+export const SERVING_EQUIPMENT_IMAGES = {
+  coffeeCups: "/images/serving-equipment/coffee-cups.webp",
+  coffeeDallah: "/images/serving-equipment/coffee-dallah.webp",
+  goldenDallah: "/images/serving-equipment/golden-dallah.webp",
+  coffeeFinjan: "/images/serving-equipment/coffee-finjan.webp",
+  glassCup: "/images/serving-equipment/glass-cup.webp",
+  coffeeGlass: "/images/serving-equipment/coffee-glass.webp",
+  teaCup: "/images/serving-equipment/tea-cup.webp",
+  whiteTeaCup: "/images/serving-equipment/white-tea-cup.webp",
+  glassTeaCup: "/images/serving-equipment/glass-tea-cup.webp",
+  coffeeMug: "/images/serving-equipment/coffee-mug.webp",
 };
 
 // ═══════════════════════════════════════════════════════════════
@@ -96,8 +189,11 @@ export const PARTNER_LOGOS = Array.from({ length: 36 }, (_, i) => `/images/partn
 // CONVENIENCE SHORTCUTS — for quick access in components
 // ═══════════════════════════════════════════════════════════════
 
-/** Primary hero image */
-export const HERO_IMG = HERO_IMAGES.main;
+/** Primary hero image (desktop) */
+export const HERO_IMG = HERO_IMAGES.desktop;
+
+/** Hero mobile image */
+export const HERO_MOBILE_IMG = HERO_IMAGES.mobile;
 
 /** Coffee / Safarjia */
 export const COFFEE_IMG = SERVICES_MALE.safarjia[0];
