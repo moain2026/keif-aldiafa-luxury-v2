@@ -41,6 +41,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-amiri), 'Amiri', serif;
 }
 
+.font-amiri {
+  font-family: var(--font-amiri), 'Amiri', serif;
+}
+
 /* ── Performance: GPU-accelerated animations ── */
 .will-change-transform {
   will-change: transform;

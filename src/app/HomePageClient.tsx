@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useRef, lazy, Suspense } from "react";
 import Link from "next/link";
@@ -39,6 +39,30 @@ function Particles() {
   );
 }
 
+function GoldenSparkle({ delay, x, y }: { delay: number; x: number; y: number }) {
+  return (
+    <motion.div
+      className="absolute w-1 h-1 rounded-full"
+      style={{
+        left: `${x}%`,
+        top: `${y}%`,
+        background: "radial-gradient(circle, #FFD700 0%, #B8860B 100%)",
+        boxShadow: "0 0 8px rgba(184, 134, 11, 0.8)",
+      }}
+      animate={{
+        opacity: [0, 1, 0],
+        scale: [0, 1, 0],
+      }}
+      transition={{
+        duration: 2,
+        repeat: Infinity,
+        delay,
+        ease: "easeInOut",
+      }}
+    />
+  );
+}
+
 export function HomePageClient() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -73,59 +97,319 @@ export function HomePageClient() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0f0f0f]/40 via-transparent to-transparent" />
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 60%, rgba(184,134,11,0.06) 0%, transparent 65%)" }} />
         <Particles />
-        <motion.div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4" style={{ opacity: heroOpacity }}>
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="flex items-center gap-3 mb-6">
-            <div className="h-px w-12 bg-gradient-to-l from-[#B8860B] to-transparent" />
-            <span className="text-[#B8860B]" style={{ fontSize: "0.75rem", letterSpacing: "0.4em" }}>SINCE 2016</span>
-            <div className="h-px w-12 bg-gradient-to-r from-[#B8860B] to-transparent" />
+        
+        {/* Golden Glassmorphism Container */}
+        <motion.div 
+          className="absolute inset-0 flex flex-col items-center justify-start sm:justify-center text-center px-4 sm:px-6 pt-12 sm:pt-0" 
+          style={{ opacity: heroOpacity }}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-full max-w-2xl px-6 sm:px-8 py-8 sm:py-12 rounded-3xl mt-4 sm:mt-0"
+            style={{
+              background: "rgba(184, 134, 11, 0.08)",
+              backdropFilter: "blur(20px)",
+              border: "1px solid rgba(184, 134, 11, 0.3)",
+              boxShadow: "0 8px 32px rgba(184, 134, 11, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+            }}
+          >
+            {/* Sparkles around the container */}
+            {[...Array(8)].map((_, i) => (
+              <GoldenSparkle
+                key={i}
+                delay={i * 0.25}
+                x={15 + (i % 2) * 70}
+                y={10 + Math.floor(i / 2) * 25}
+              />
+            ))}
+
+            {/* SINCE 2016 */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="flex items-center justify-center gap-3 mb-6"
+            >
+              <div className="h-px w-8 sm:w-10 bg-gradient-to-l from-[#B8860B] to-transparent" />
+              <span
+                className="text-[#D4A017] font-medium"
+                style={{ fontSize: "0.7rem", letterSpacing: "0.3em" }}
+              >
+                SINCE 2016
+              </span>
+              <div className="h-px w-8 sm:w-10 bg-gradient-to-r from-[#B8860B] to-transparent" />
+            </motion.div>
+
+            {/* Main Title - 3D Golden Text */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="text-[#F5F5DC] mb-4 font-tajawal"
+              style={{
+                fontSize: "clamp(2.2rem, 8vw, 4.5rem)",
+                fontWeight: 900,
+                lineHeight: 1.2,
+                background: "linear-gradient(135deg, #FFD700 0%, #D4A017 25%, #B8860B 50%, #D4A017 75%, #FFD700 100%)",
+                backgroundSize: "200% auto",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                textShadow: "0 4px 30px rgba(0,0,0,0.6)",
+                filter: "drop-shadow(0 0 20px rgba(184, 134, 11, 0.4))",
+              }}
+            >
+              كيف الضيافة
+            </motion.h1>
+
+            {/* Divider Line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="mb-5 mx-auto"
+              style={{
+                width: 80,
+                height: 2,
+                background: "linear-gradient(90deg, transparent, #B8860B, #FFD700, #B8860B, transparent)",
+                boxShadow: "0 0 15px rgba(184, 134, 11, 0.6)",
+              }}
+            />
+
+            {/* KEIF AL-DIAFA & LUXURY HOSPITALITY */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.7 }}
+              className="flex flex-col items-center gap-2 mb-6"
+            >
+              <p
+                className="text-[#D4A017]"
+                style={{
+                  fontSize: "clamp(0.8rem, 2vw, 0.95rem)",
+                  letterSpacing: "0.25em",
+                  fontWeight: 600,
+                }}
+              >
+                KEIF AL-DIAFA
+              </p>
+              <div className="flex items-center justify-center gap-2">
+                <div className="h-px w-6 bg-gradient-to-l from-[#B8860B] to-transparent" />
+                <span
+                  className="text-[#B8860B]"
+                  style={{
+                    fontSize: "0.65rem",
+                    letterSpacing: "0.2em",
+                    fontWeight: 500,
+                  }}
+                >
+                  LUXURY HOSPITALITY
+                </span>
+                <div className="h-px w-6 bg-gradient-to-r from-[#B8860B] to-transparent" />
+              </div>
+            </motion.div>
+
+            {/* Description */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.8 }}
+              className="max-w-xl mx-auto"
+            >
+              <p
+                className="text-[#F5F5DC]/85 mb-4 font-amiri"
+                style={{
+                  fontSize: "clamp(0.95rem, 2vw, 1.1rem)",
+                  lineHeight: 1.8,
+                  fontWeight: 400,
+                }}
+              >
+                نقدم خدمات ضيافة متكاملة تلبي تطلعات الأفراد، وترتقي بفعاليات الشركات والمؤسسات والجهات الحكومية.
+              </p>
+              <p
+                className="text-[#D4A017]/90 font-amiri"
+                style={{
+                  fontSize: "clamp(0.9rem, 1.8vw, 1rem)",
+                  lineHeight: 1.9,
+                  fontWeight: 400,
+                  letterSpacing: "0.02em",
+                }}
+              >
+                تغطية شاملة لـ: <span className="text-[#FFD700]">المعارض</span> | <span className="text-[#FFD700]">المؤتمرات</span> | <span className="text-[#FFD700]">الاجتماعات</span> | <span className="text-[#FFD700]">الفعاليات الوطنية</span> | <span className="text-[#FFD700]">المناسبات الخاصة</span>
+              </p>
+            </motion.div>
           </motion.div>
-          <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }} className="text-[#F5F5DC] mb-2 font-tajawal" style={{ fontSize: "clamp(3rem, 10vw, 6rem)", fontWeight: 900, lineHeight: 1.1, textShadow: "0 4px 30px rgba(0,0,0,0.6)" }}>كيف الضيافة</motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }} className="mb-4" style={{ fontSize: "clamp(0.9rem, 2.5vw, 1.2rem)", letterSpacing: "0.3em", color: "#B8860B" }}>KEIF AL-DIAFA</motion.p>
-          <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.8, delay: 0.6 }} className="mb-6" style={{ width: 120, height: 2, background: "linear-gradient(90deg, transparent, #B8860B, #D4A017, transparent)" }} />
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.7 }} className="text-[#F5F5DC]/75 max-w-xl mb-10" style={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)", lineHeight: 1.8 }}>منصة تجربة فاخرة تعكس جودة الضيافة السعودية الأصيلة<br className="hidden sm:block" />نحوّل كل مناسبة إلى لحظة لا تُنسى</motion.p>
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.85 }} className="flex gap-3 flex-wrap justify-center">
-            <Link href="/services" className="px-8 py-3.5 rounded-full text-[#0f0f0f] transition-all duration-300 hover:-translate-y-0.5" style={{ background: "linear-gradient(135deg, #B8860B, #D4A017, #B8860B)", backgroundSize: "200% auto", fontWeight: 800, fontSize: "0.95rem", boxShadow: "0 6px 25px rgba(184,134,11,0.4)" }}>اكتشف خدماتنا</Link>
-            <a href={`https://wa.me/${WA}?text=${encodeURIComponent("مرحباً، أود الاستفسار عن خدمات الضيافة لديكم.")}`} target="_blank" rel="noopener noreferrer" className="px-8 py-3.5 rounded-full transition-all duration-300 hover:bg-white/10" style={{ border: "1px solid rgba(184,134,11,0.5)", color: "#B8860B", fontWeight: 600, fontSize: "0.95rem", backdropFilter: "blur(10px)" }}>تواصل معنا</a>
+
+          {/* CTA Buttons - Outside Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+            className="flex gap-3 flex-wrap justify-center mt-8 sm:mt-12 relative z-20"
+          >
+            <Link
+              href="/services"
+              className="px-6 sm:px-8 py-3 rounded-full text-[#0f0f0f] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              style={{
+                background: "linear-gradient(135deg, #FFD700, #D4A017, #B8860B)",
+                backgroundSize: "200% auto",
+                fontWeight: 800,
+                fontSize: "0.9rem",
+                boxShadow: "0 8px 25px rgba(184, 134, 11, 0.5)",
+              }}
+            >
+              اكتشف خدماتنا
+            </Link>
+            <a
+              href={`https://wa.me/${WA}?text=${encodeURIComponent("مرحباً، أود الاستفسار عن خدمات الضيافة لديكم.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 sm:px-8 py-3 rounded-full transition-all duration-300 hover:bg-white/15"
+              style={{
+                border: "1.5px solid rgba(184, 134, 11, 0.6)",
+                color: "#D4A017",
+                fontWeight: 600,
+                fontSize: "0.9rem",
+                backdropFilter: "blur(10px)",
+              }}
+            >
+              تواصل معنا
+            </a>
           </motion.div>
-          <motion.div className="absolute bottom-8" animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
-            <div className="flex flex-col items-center gap-2" style={{ opacity: 0.5 }}>
-              <span className="text-[#B8860B] text-xs" style={{ letterSpacing: "0.2em" }}>اكتشف</span>
-              <div className="w-5 h-8 rounded-full border border-[#B8860B]/40 flex items-start justify-center pt-1.5"><motion.div className="w-1 h-2 rounded-full bg-[#B8860B]" animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }} /></div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="flex flex-col items-center gap-2" style={{ opacity: 0.5 }}>
+            <span className="text-[#B8860B] text-xs" style={{ letterSpacing: "0.2em" }}>
+              اكتشف
+            </span>
+            <div className="w-5 h-8 rounded-full border border-[#B8860B]/40 flex items-start justify-center pt-1.5">
+              <motion.div
+                className="w-1 h-2 rounded-full bg-[#B8860B]"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </section>
 
-      {/* WHY US */}
-      <section className="py-24 px-4 max-w-7xl mx-auto">
-        <SectionHeader label="مزايانا التنافسية" title="لماذا كيف الضيافة؟" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {whyCards.map((card, i) => (<motion.div key={i} initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ delay: i * 0.1, duration: 0.5 }} className="card-luxury p-6 rounded-2xl relative overflow-hidden group"><div className="absolute top-0 right-0 w-24 h-24 rounded-bl-full bg-[#B8860B]/5 group-hover:bg-[#B8860B]/10 transition-colors duration-500" /><div className="w-14 h-14 rounded-xl flex items-center justify-center text-[#B8860B] mb-5 relative z-10" style={{ background: "linear-gradient(135deg, rgba(184,134,11,0.12), rgba(184,134,11,0.04))", border: "1px solid rgba(184,134,11,0.2)" }}>{card.icon}</div><h3 className="text-[#F5F5DC] mb-3 relative z-10" style={{ fontSize: "1.05rem", fontWeight: 700 }}>{card.title}</h3><p className="text-[#F5F5DC]/50 text-sm leading-relaxed relative z-10">{card.desc}</p></motion.div>))}
+      {/* PARTNERS SLIDER */}
+      <section className="relative py-16 sm:py-20 bg-[#0f0f0f]">
+        <div className="container mx-auto px-4">
+          <Suspense fallback={<div className="h-32 bg-[#1a1a1a] rounded-lg animate-pulse" />}>
+            <PartnersSlider />
+          </Suspense>
         </div>
       </section>
 
-      <Suspense fallback={<div className="py-16 text-center text-[#B8860B]/30 text-sm">جاري تحميل الشركاء...</div>}>
-        <PartnersSlider />
-      </Suspense>
-
-      {/* CTA */}
-      <section className="py-24 px-4 relative overflow-hidden">
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(184,134,11,0.08) 0%, transparent 70%)" }} />
-        <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.7 }} className="max-w-3xl mx-auto text-center relative z-10">
-          <p className="text-[#B8860B] mb-4" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ ابدأ رحلتك ✦</p>
-          <h2 className="text-[#F5F5DC] mb-5 font-tajawal" style={{ fontSize: "clamp(1.8rem, 4.5vw, 2.8rem)", fontWeight: 900, lineHeight: 1.25 }}>جاهزون لإضافة لمسة<span className="gold-gradient-text"> فخامة </span>لمناسبتك</h2>
-          <p className="text-[#F5F5DC]/55 mb-10 leading-relaxed text-sm sm:text-base">تواصل معنا الآن واحصل على استشارة مجانية لتصميم تجربة ضيافة فاخرة لا تُنسى</p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <motion.a href={`https://wa.me/${WA}?text=${encodeURIComponent("مرحباً، أود الاستفسار عن خدمات الضيافة لديكم.")}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-8 py-4 rounded-full text-white transition-all duration-300 hover:-translate-y-0.5" style={{ background: "linear-gradient(135deg, #1da851, #25D366)", fontWeight: 700, fontSize: "1rem", boxShadow: "0 6px 25px rgba(37,211,102,0.35)" }} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
-              تواصل عبر واتساب
-            </motion.a>
-            <motion.a href="tel:+966508252134" className="flex items-center gap-3 px-8 py-4 rounded-full transition-all duration-300 hover:bg-[#B8860B]/10" style={{ border: "1px solid rgba(184,134,11,0.35)", color: "#B8860B", fontWeight: 600, fontSize: "1rem" }} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-              اتصل بنا الآن
-            </motion.a>
+      {/* WHY US SECTION */}
+      <section className="relative py-16 sm:py-24 bg-[#0f0f0f]">
+        <div className="container mx-auto px-4">
+          <SectionHeader label="لماذا نحن" title="لماذا تختار كيف الضيافة؟" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {whyCards.map((card, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="group relative p-6 sm:p-8 rounded-2xl overflow-hidden"
+                style={{
+                  background: "rgba(184, 134, 11, 0.05)",
+                  border: "1px solid rgba(184, 134, 11, 0.2)",
+                  backdropFilter: "blur(10px)",
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-[#B8860B]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative z-10">
+                  <div className="mb-4 text-[#D4A017] group-hover:scale-110 transition-transform duration-300">
+                    {card.icon}
+                  </div>
+                  <h3 className="text-[#F5F5DC] font-tajawal mb-3" style={{ fontSize: "1.1rem", fontWeight: 700 }}>
+                    {card.title}
+                  </h3>
+                  <p className="text-[#F5F5DC]/70" style={{ fontSize: "0.9rem", lineHeight: 1.6 }}>
+                    {card.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
-        </motion.div>
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section className="relative py-16 sm:py-24 bg-[#0f0f0f] overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#B8860B]/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#B8860B]/10 rounded-full blur-3xl" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-[#F5F5DC] font-tajawal mb-6"
+            style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", fontWeight: 800 }}
+          >
+            هل أنت مستعد لتجربة الفخامة الحقيقية؟
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-[#F5F5DC]/70 max-w-2xl mx-auto mb-10"
+            style={{ fontSize: "1rem", lineHeight: 1.8 }}
+          >
+            دع فريقنا المتخصص يحول مناسبتك إلى حدث لا يُنسى بخدمات ضيافة فاخرة وراقية
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex gap-4 flex-wrap justify-center"
+          >
+            <a
+              href={`https://wa.me/${WA}?text=${encodeURIComponent("مرحباً، أود الاستفسار عن خدمات الضيافة لديكم.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 rounded-full text-[#0f0f0f] transition-all duration-300 hover:-translate-y-1"
+              style={{
+                background: "linear-gradient(135deg, #FFD700, #D4A017)",
+                fontWeight: 800,
+                fontSize: "0.95rem",
+                boxShadow: "0 8px 25px rgba(184, 134, 11, 0.5)",
+              }}
+            >
+              تواصل معنا الآن
+            </a>
+            <Link
+              href="/portfolio"
+              className="px-8 py-4 rounded-full transition-all duration-300 hover:bg-white/10"
+              style={{
+                border: "1.5px solid rgba(184, 134, 11, 0.6)",
+                color: "#D4A017",
+                fontWeight: 600,
+                fontSize: "0.95rem",
+                backdropFilter: "blur(10px)",
+              }}
+            >
+              شاهد أعمالنا
+            </Link>
+          </motion.div>
+        </div>
       </section>
     </div>
   );

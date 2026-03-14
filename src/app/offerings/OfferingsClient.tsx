@@ -10,7 +10,6 @@ import {
   DATES_IMAGES,
   SWEETS_IMAGES,
   PASTRY_IMAGES,
-  SERVING_EQUIPMENT_IMAGES,
 } from "@/lib/images";
 
 const WA = "966508252134";
@@ -94,21 +93,7 @@ const categories: CategoryData[] = [
       { name: "مقبلات فاخرة",          description: "مقبلات ومعجنات صغيرة فاخرة لحفلات الاستقبال",             img: PASTRY_IMAGES.appetizers,      height: "medium" },
     ],
   },
-  {
-    id: "equipment", label: "معدات التقديم", icon: "⚙️", description: "أدوات ومعدات تقديم فاخرة للإيجار",
-    items: [
-      { name: "دلة قهوة ذهبية",         description: "دلة قهوة عربية ذهبية فاخرة بتصميم تراثي أنيق",          img: SERVING_EQUIPMENT_IMAGES.goldenDallah,  height: "tall"   },
-      { name: "دلة قهوة تراثية",        description: "دلة قهوة عربية تقليدية بلمسة من الأصالة السعودية",       img: SERVING_EQUIPMENT_IMAGES.coffeeDallah,  height: "medium" },
-      { name: "فنجان قهوة",             description: "فناجين قهوة عربية أنيقة بزخارف ذهبية",                   img: SERVING_EQUIPMENT_IMAGES.coffeeFinjan,  height: "short"  },
-      { name: "أكواب قهوة",             description: "طقم أكواب قهوة فاخرة بتصميم عصري أنيق",                  img: SERVING_EQUIPMENT_IMAGES.coffeeCups,    height: "tall"   },
-      { name: "كأس قهوة",              description: "كؤوس قهوة كريستالية بلمسات ذهبية راقية",                  img: SERVING_EQUIPMENT_IMAGES.coffeeGlass,   height: "medium" },
-      { name: "كأس زجاجي",             description: "كؤوس زجاجية شفافة بتصميم أنيق للمناسبات",                 img: SERVING_EQUIPMENT_IMAGES.glassCup,      height: "short"  },
-      { name: "كوب شاي",               description: "أكواب شاي بتصميم تراثي سعودي أنيق",                       img: SERVING_EQUIPMENT_IMAGES.teaCup,        height: "tall"   },
-      { name: "كوب شاي أبيض",          description: "أكواب شاي بيضاء كلاسيكية بحواف ذهبية",                    img: SERVING_EQUIPMENT_IMAGES.whiteTeaCup,   height: "medium" },
-      { name: "كوب شاي زجاجي",         description: "أكواب شاي زجاجية أنيقة تُظهر جمال لون المشروب",           img: SERVING_EQUIPMENT_IMAGES.glassTeaCup,   height: "short"  },
-      { name: "كوب قهوة",              description: "أكواب قهوة عصرية بتصميم فاخر للمناسبات الراقية",           img: SERVING_EQUIPMENT_IMAGES.coffeeMug,     height: "tall"   },
-    ],
-  },
+
 ];
 
 // ─────────────────────────────────────────────
