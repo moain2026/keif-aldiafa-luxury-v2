@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useAnimationFrame, useMotionValue, useTransform } from "motion/react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 
 // Partner logos (30 total)
@@ -37,30 +38,27 @@ const allPartners = [
   { id: 30, name: "Hamat Leading", logo: "/images/partners/30_Hamat_Leading.webp" },
 ];
 
-// Split into two groups (15 each)
-const firstRow = allPartners.slice(0, 15);
-const secondRow = allPartners.slice(15, 30);
-
-// Partner card component
+// Partner card component - Optimized for all devices
 function PartnerCard({ partner }: { partner: (typeof allPartners)[0] }) {
   return (
-    <div className="flex-shrink-0 select-none" style={{ width: "clamp(140px, 30vw, 200px)" }}>
+    <div className="flex-shrink-0 select-none px-2 sm:px-3" style={{ width: "clamp(110px, 25vw, 160px)" }}>
       <div
-        className="relative h-24 sm:h-28 rounded-lg flex items-center justify-center cursor-default transition-all duration-300 hover:border-[rgba(184,134,11,0.5)]"
+        className="relative h-16 sm:h-20 rounded-xl flex items-center justify-center cursor-grab active:cursor-grabbing transition-all duration-300 hover:border-[rgba(184,134,11,0.4)] group"
         style={{
-          background: "rgba(20,16,6,0.5)",
-          border: "1px solid rgba(184,134,11,0.15)",
+          background: "rgba(20,16,6,0.4)",
+          border: "1px solid rgba(184,134,11,0.12)",
+          backdropFilter: "blur(8px)",
         }}
       >
-        <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center p-2">
+        <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center p-1.5 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
           <ImageWithFallback
             src={partner.logo}
             alt={partner.name}
-            className="w-full h-full object-contain brightness-110 contrast-110"
+            className="w-full h-full object-contain brightness-110 contrast-110 grayscale group-hover:grayscale-0 transition-all duration-500"
             loading="lazy"
-            width={80}
-            height={80}
-            quality={85}
+            width={60}
+            height={60}
+            quality={80}
           />
         </div>
       </div>
@@ -68,77 +66,132 @@ function PartnerCard({ partner }: { partner: (typeof allPartners)[0] }) {
   );
 }
 
-export function PartnersMarquee() {
+interface MarqueeRowProps {
+  items: typeof allPartners;
+  baseVelocity: number;
+  direction?: "ltr" | "rtl";
+}
+
+function MarqueeRow({ items, baseVelocity = 1, direction = "rtl" }: MarqueeRowProps) {
+  const baseX = useMotionValue(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  // Triple the items to ensure seamless loop even on large screens
+  const tripledItems = useMemo(() => [...items, ...items, ...items], [items]);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      // Calculate width of one set of items
+      setContainerWidth(containerRef.current.scrollWidth / 3);
+    }
+    
+    const handleResize = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.scrollWidth / 3);
+      }
+    };
+    
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [items]);
+
+  // Wrap the value between 0 and -containerWidth for seamless looping
+  const x = useTransform(baseX, (v) => {
+    if (containerWidth === 0) return 0;
+    const modValue = v % containerWidth;
+    return modValue;
+  });
+
+  useAnimationFrame((t, delta) => {
+    if (containerWidth === 0) return;
+    
+    // Calculate movement based on time delta for consistent speed across refresh rates
+    let moveBy = baseVelocity * (delta / 16);
+    
+    // Adjust direction
+    if (direction === "ltr") {
+      baseX.set(baseX.get() + moveBy);
+    } else {
+      baseX.set(baseX.get() - moveBy);
+    }
+  });
+
   return (
-    <section className="py-16 px-4 overflow-hidden contain-paint">
-      <div className="max-w-7xl mx-auto mb-10">
+    <div className="relative overflow-hidden py-2 touch-pan-y">
+      <motion.div
+        ref={containerRef}
+        className="flex whitespace-nowrap will-change-transform"
+        style={{ x }}
+        drag="x"
+        dragConstraints={{ left: -containerWidth * 2, right: containerWidth }}
+        onDrag={(e, info) => {
+          // Allow user to influence the position while dragging
+          baseX.set(baseX.get() + info.delta.x);
+        }}
+      >
+        {tripledItems.map((partner, i) => (
+          <PartnerCard key={`${partner.id}-${i}`} partner={partner} />
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+export function PartnersMarquee() {
+  // Split into two distinct groups for visual variety
+  const firstRow = useMemo(() => allPartners.slice(0, 15), []);
+  const secondRow = useMemo(() => allPartners.slice(15, 30), []);
+
+  return (
+    <section className="py-12 sm:py-16 px-4 overflow-hidden contain-paint bg-[#0f0f0f]">
+      <div className="max-w-7xl mx-auto mb-8 sm:mb-12">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          className="text-center"
         >
-          <p className="text-[#B8860B] mb-3 text-center" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>
+          <p className="text-[#B8860B] mb-2 text-center" style={{ fontSize: "0.7rem", letterSpacing: "0.3em", fontWeight: 600 }}>
             ✦ نثق بهم ويثقون بنا ✦
           </p>
           <h2
             className="text-[#F5F5DC] text-center font-amiri"
-            style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", fontWeight: 800, lineHeight: 1.3 }}
+            style={{ fontSize: "clamp(1.5rem, 4vw, 2.4rem)", fontWeight: 800, lineHeight: 1.2 }}
           >
             شركاء النجاح
           </h2>
           <div
-            className="mt-4 mb-1 rounded-full mx-auto"
+            className="mt-3 mb-1 rounded-full mx-auto"
             style={{
-              width: 90,
+              width: 60,
               height: 2,
               background: "linear-gradient(90deg, transparent, #B8860B 30%, #D4A017 60%, transparent)",
             }}
           />
-          <p className="text-[#F5F5DC]/40 text-sm mt-4 font-ibm-plex-arabic">
-            نفتخر بخدمة نخبة من المؤسسات والشركات الرائدة
-          </p>
         </motion.div>
       </div>
 
-      {/* First Marquee - Right to Left */}
-      <div className="relative mb-6 overflow-hidden">
-        <div className="absolute inset-y-0 right-0 w-12 sm:w-20 bg-gradient-to-l from-[#0f0f0f] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 left-0 w-12 sm:w-20 bg-gradient-to-r from-[#0f0f0f] to-transparent z-10 pointer-events-none" />
-        <motion.div
-          className="flex gap-4 sm:gap-6"
-          animate={{ x: [0, -1000] }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          {[...firstRow, ...firstRow].map((partner, i) => (
-            <PartnerCard key={`first-${partner.id}-${i}`} partner={partner} />
-          ))}
-        </motion.div>
-      </div>
+      <div className="relative space-y-4 sm:space-y-6">
+        {/* Edge Fading Gradients */}
+        <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#0f0f0f] to-transparent z-20 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#0f0f0f] to-transparent z-20 pointer-events-none" />
 
-      {/* Second Marquee - Left to Right */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-y-0 right-0 w-12 sm:w-20 bg-gradient-to-l from-[#0f0f0f] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 left-0 w-12 sm:w-20 bg-gradient-to-r from-[#0f0f0f] to-transparent z-10 pointer-events-none" />
-        <motion.div
-          className="flex gap-4 sm:gap-6"
-          animate={{ x: [-1000, 0] }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          {[...secondRow, ...secondRow].map((partner, i) => (
-            <PartnerCard key={`second-${partner.id}-${i}`} partner={partner} />
-          ))}
-        </motion.div>
+        {/* First Row - Moves Right to Left (RTL context) */}
+        <MarqueeRow items={firstRow} baseVelocity={0.8} direction="rtl" />
+
+        {/* Second Row - Moves Left to Right */}
+        <MarqueeRow items={secondRow} baseVelocity={0.6} direction="ltr" />
       </div>
+      
+      <motion.p 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        className="text-[#F5F5DC]/30 text-[10px] sm:text-xs text-center mt-8 font-ibm-plex-arabic tracking-wide"
+      >
+        يمكنك سحب الشريط يدوياً لاستكشاف المزيد من الشركاء
+      </motion.p>
     </section>
   );
 }
