@@ -87,17 +87,44 @@ const categories: ServiceCategory[] = [
 
 function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () => void }) {
   const [selectedOutfit, setSelectedOutfit] = useState(0);
+
+  const handleDragEnd = (event: any, info: any) => {
+    if (service.outfits.length <= 1) return;
+    const swipeThreshold = 50;
+    if (info.offset.x > swipeThreshold) {
+      // Swipe Right -> Previous
+      setSelectedOutfit((prev) => (prev === 0 ? service.outfits.length - 1 : prev - 1));
+    } else if (info.offset.x < -swipeThreshold) {
+      // Swipe Left -> Next
+      setSelectedOutfit((prev) => (prev === service.outfits.length - 1 ? 0 : prev + 1));
+    }
+  };
+
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[80] flex items-center justify-center p-1 sm:p-4" onClick={onClose} role="dialog" aria-modal="true" aria-label={`تفاصيل خدمة ${service.title}`}>
       <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
       <motion.div initial={{ opacity: 0, scale: 0.92, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.92, y: 30 }} transition={{ type: "spring", damping: 25, stiffness: 250 }} onClick={(e) => e.stopPropagation()} className="relative w-[98%] sm:max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl" style={{ background: "linear-gradient(160deg, rgba(25,20,8,0.98), rgba(15,12,5,0.99))", border: "1px solid rgba(184,134,11,0.25)", boxShadow: "0 40px 80px rgba(0,0,0,0.8)" }}>
         <button onClick={onClose} className="absolute top-4 left-4 z-10 w-10 h-10 rounded-full flex items-center justify-center text-[#F5F5DC]/60 hover:text-[#F5F5DC] transition-colors" style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(10px)" }}>✕</button>
-        <div className="relative w-full aspect-[3/4] sm:aspect-[16/10] overflow-hidden rounded-t-3xl">
-          <ImageWithFallback
-            src={service.outfits.length > 0 ? service.outfits[selectedOutfit].img : service.img}
-            alt={service.outfits.length > 0 ? service.outfits[selectedOutfit].name : service.title}
-            className="w-full h-full object-fill transition-all duration-500"
-          />
+        <div className="relative w-full aspect-[3/4] sm:aspect-[16/10] overflow-hidden rounded-t-3xl touch-none">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedOutfit}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              onDragEnd={handleDragEnd}
+              className="w-full h-full cursor-grab active:cursor-grabbing"
+            >
+              <ImageWithFallback
+                src={service.outfits.length > 0 ? service.outfits[selectedOutfit].img : service.img}
+                alt={service.outfits.length > 0 ? service.outfits[selectedOutfit].name : service.title}
+                className="w-full h-full object-fill pointer-events-none"
+              />
+            </motion.div>
+          </AnimatePresence>
           <div className="absolute inset-0 img-overlay" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
             <p className="text-[#B8860B] text-xs mb-1" style={{ letterSpacing: "0.15em" }}>{service.subtitle}</p>
