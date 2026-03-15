@@ -118,7 +118,7 @@ function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () 
             <ImageWithFallback
               src={service.outfits.length > 0 ? service.outfits[selectedOutfit].img : service.img}
               alt={service.outfits.length > 0 ? service.outfits[selectedOutfit].name : service.title}
-              className="w-full h-full object-fill pointer-events-none"
+                className="w-full h-full object-cover pointer-events-none"
             />
           </motion.div>
           <div className="absolute inset-0 img-overlay md:hidden" />
