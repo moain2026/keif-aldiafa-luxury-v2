@@ -108,7 +108,7 @@ function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () 
         
         {/* Image Section with Gallery Swipe */}
         <div className="relative w-full aspect-[3/4] sm:aspect-[16/10] overflow-hidden touch-none flex-shrink-0">
-          <div className="flex w-full h-full transition-transform duration-500 ease-out" style={{ transform: `translateX(${selectedOutfit * 100}%)` }}>
+          <div className="flex w-full h-full transition-transform duration-500 ease-out" style={{ transform: `translateX(-${selectedOutfit * 100}%)` }}>
             {service.outfits.length > 0 ? (
               service.outfits.map((o, i) => (
                 <div key={i} className="w-full h-full flex-shrink-0">
@@ -140,29 +140,29 @@ function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () 
           </div>
         </div>
 
-        {/* Content Section - Back to original flow */}
-        <div className="p-5 sm:p-8">
-          <p className="text-[#F5F5DC]/65 text-sm md:text-base leading-relaxed mb-6">{service.description}</p>
+        {/* Content Section - Compacted */}
+        <div className="p-3 sm:p-6">
+          <p className="text-[#F5F5DC]/65 text-[11px] leading-tight mb-2 line-clamp-2">{service.description}</p>
           
-          <div className="grid grid-cols-2 gap-3 mb-8">
+          <div className="grid grid-cols-2 gap-1.5 mb-3">
             {service.features.map((f, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "rgba(184,134,11,0.15)", border: "1px solid rgba(184,134,11,0.3)" }}>
-                  <svg viewBox="0 0 16 16" fill="#B8860B" className="w-3 h-3"><path d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z" /></svg>
+              <div key={i} className="flex items-center gap-1.5">
+                <div className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "rgba(184,134,11,0.15)", border: "1px solid rgba(184,134,11,0.2)" }}>
+                  <svg viewBox="0 0 16 16" fill="#B8860B" className="w-2.5 h-2.5"><path d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z" /></svg>
                 </div>
-                <span className="text-[#F5F5DC]/70 text-sm">{f}</span>
+                <span className="text-[#F5F5DC]/60 text-[10px]">{f}</span>
               </div>
             ))}
           </div>
 
           {service.outfits.length > 0 && (
-            <div className="mb-4">
-              <h3 className="text-[#B8860B] text-xs mb-3 uppercase tracking-wider font-bold">الأزياء المتاحة</h3>
-              <div className="flex gap-2 overflow-x-auto scroll-hide pb-2">
+            <div className="mb-2">
+              <h3 className="text-[#B8860B] text-[10px] mb-1 uppercase tracking-wider font-bold">الأزياء المتاحة</h3>
+              <div className="flex gap-1.5 overflow-x-auto scroll-hide pb-0.5">
                 {service.outfits.map((o, i) => (
-                  <button key={i} onClick={() => setSelectedOutfit(i)} className="flex-shrink-0 w-20 rounded-xl overflow-hidden transition-all duration-300 group" style={{ border: selectedOutfit === i ? "2px solid #B8860B" : "2px solid rgba(184,134,11,0.1)", opacity: selectedOutfit === i ? 1 : 0.5 }}>
-                    <ImageWithFallback src={o.img} alt={o.name} className="w-full h-16 object-cover group-hover:scale-110 transition-transform duration-500" />
-                    <p className="text-center text-[10px] py-1 text-[#F5F5DC]/60 bg-black/40">{o.name}</p>
+                  <button key={i} onClick={() => setSelectedOutfit(i)} className="flex-shrink-0 w-16 rounded-lg overflow-hidden transition-all duration-300 group" style={{ border: selectedOutfit === i ? "1.5px solid #B8860B" : "1.5px solid rgba(184,134,11,0.1)", opacity: selectedOutfit === i ? 1 : 0.5 }}>
+                    <ImageWithFallback src={o.img} alt={o.name} className="w-full h-12 object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <p className="text-center text-[8px] py-0.5 text-[#F5F5DC]/60 bg-black/40">{o.name}</p>
                   </button>
                 ))}
               </div>
