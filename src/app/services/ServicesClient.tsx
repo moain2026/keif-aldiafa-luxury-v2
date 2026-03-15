@@ -150,7 +150,7 @@ function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () 
             )}
           </div>
 
-          <p className="text-[#F5F5DC]/65 text-[11px] md:text-base leading-tight md:leading-relaxed mb-4 md:mb-6 line-clamp-3 md:line-clamp-none">{service.description}</p>
+          <p className="text-[#F5F5DC]/65 text-[11px] md:text-base leading-tight md:leading-relaxed mb-4 md:mb-6">{service.description}</p>
           
           <div className="grid grid-cols-2 gap-1.5 md:gap-4 mb-4 md:mb-8">
             {service.features.map((f, i) => (
