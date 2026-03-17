@@ -212,8 +212,8 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
         ref={navRef}
         className={`w-full transition-all duration-300 ${isSticky ? 'fixed top-0 left-0 right-0 z-50' : 'relative'}`}
         animate={{
-          paddingTop: isSticky ? '16px' : '32px',
-          paddingBottom: isSticky ? '16px' : '32px',
+          paddingTop: isSticky ? '12px' : '16px',
+          paddingBottom: isSticky ? '12px' : '16px',
           background: isSticky ? 'rgba(15, 15, 15, 0.95)' : 'transparent',
           backdropFilter: isSticky ? 'blur(16px)' : 'none',
           borderBottom: isSticky ? '1px solid rgba(184, 134, 11, 0.15)' : 'none',
@@ -221,12 +221,12 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-center gap-4 sm:gap-6">
+          <div className="flex justify-center gap-2 sm:gap-3">
             {categories.map((cat, idx) => (
               <motion.button
                 key={cat.key}
                 onClick={() => onTabChange(idx)}
-                className="relative group flex-1 max-w-xs"
+                className="relative group flex-1 max-w-sm"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -247,10 +247,10 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
                 />
 
                 {/* Content Container */}
-                <div className="relative flex flex-col items-center justify-center p-4 sm:p-6 h-full">
+                <div className="relative flex flex-col items-center justify-center p-3 sm:p-4 h-full">
                   {/* Icon - Animated Visibility */}
                   <motion.span
-                    className="text-5xl sm:text-6xl overflow-hidden"
+                    className="text-3xl sm:text-4xl overflow-hidden"
                     animate={{
                       opacity: isSticky ? 0 : 1,
                       scale: isSticky ? 0 : (activeTab === idx ? 1.3 : 1),
@@ -265,11 +265,11 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
 
                   {/* Label */}
                   <motion.p
-                    className="text-center font-bold leading-tight"
+                    className="text-[10px] sm:text-xs text-center font-medium leading-tight"
                     animate={{
                       color: activeTab === idx ? '#D4A017' : '#F5F5DC',
                       opacity: activeTab === idx ? 1 : 0.65,
-                      fontSize: isSticky ? '0.85rem' : '0.95rem',
+                      fontSize: isSticky ? '0.7rem' : '0.75rem',
                     }}
                     transition={{ duration: 0.3 }}
                   >
@@ -335,7 +335,7 @@ export default function ServicesClient() {
     <div>
       <Breadcrumbs />
       {/* HERO */}
-      <section className="relative pt-6 pb-10 px-4 overflow-hidden">
+      <section className="relative pt-4 pb-6 px-4 overflow-hidden">
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 20%, rgba(184,134,11,0.08) 0%, transparent 60%)" }} />
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ خدماتنا ✦</motion.p>
