@@ -217,32 +217,35 @@ function Lightbox({
 function StickyMicroNav({ activeTab, onTabChange }: { activeTab: string; onTabChange: (id: string) => void }) {
   const [isSticky, setIsSticky] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
 
   useEffect(() => {
     const unsubscribe = scrollY.onChange((latest) => {
-      if (navRef.current) {
-        const navPosition = navRef.current.getBoundingClientRect().top;
-        setIsSticky(navPosition <= 0);
+      if (containerRef.current) {
+        const containerTop = containerRef.current.getBoundingClientRect().top;
+        setIsSticky(containerTop <= 0);
       }
     });
     return () => unsubscribe();
   }, [scrollY]);
 
   return (
-    <motion.div
-      ref={navRef}
-      className={`w-full transition-all duration-300 ${isSticky ? 'fixed top-0 left-0 right-0 z-50 py-3' : 'relative py-6'}`}
-      style={{
-        background: isSticky 
-          ? 'rgba(15, 15, 15, 0.95)' 
-          : 'transparent',
-        backdropFilter: isSticky ? 'blur(16px)' : 'none',
-        borderBottom: isSticky ? '1px solid rgba(184, 134, 11, 0.15)' : 'none',
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-5 gap-2 sm:gap-3">
+    <div ref={containerRef} className="w-full">
+      <motion.div
+        ref={navRef}
+        className={`w-full transition-all duration-300 ${isSticky ? 'fixed top-0 left-0 right-0 z-50' : 'relative'}`}
+        animate={{
+          paddingTop: isSticky ? '12px' : '24px',
+          paddingBottom: isSticky ? '12px' : '24px',
+          background: isSticky ? 'rgba(15, 15, 15, 0.95)' : 'transparent',
+          backdropFilter: isSticky ? 'blur(16px)' : 'none',
+          borderBottom: isSticky ? '1px solid rgba(184, 134, 11, 0.15)' : 'none',
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-5 gap-2 sm:gap-3">
           {categories.map((cat, idx) => (
             <motion.button
               key={cat.id}
@@ -268,12 +271,15 @@ function StickyMicroNav({ activeTab, onTabChange }: { activeTab: string; onTabCh
               />
 
               {/* Content Container */}
-              <div className="relative flex flex-col items-center justify-center p-3 sm:p-4 h-full min-h-[80px] sm:min-h-[100px]">
-                {/* Icon */}
+              <div className="relative flex flex-col items-center justify-center p-3 sm:p-4 h-full">
+                {/* Icon - Animated Visibility */}
                 <motion.span
-                  className="text-3xl sm:text-4xl mb-1 sm:mb-2"
+                  className="text-3xl sm:text-4xl overflow-hidden"
                   animate={{
-                    scale: activeTab === cat.id ? 1.2 : 1,
+                    opacity: isSticky ? 0 : 1,
+                    scale: isSticky ? 0 : (activeTab === cat.id ? 1.2 : 1),
+                    height: isSticky ? 0 : 'auto',
+                    marginBottom: isSticky ? 0 : '0.25rem',
                     filter: activeTab === cat.id ? 'drop-shadow(0 0 8px rgba(184, 134, 11, 0.6))' : 'none',
                   }}
                   transition={{ type: 'spring', stiffness: 400, damping: 30 }}
@@ -287,6 +293,7 @@ function StickyMicroNav({ activeTab, onTabChange }: { activeTab: string; onTabCh
                   animate={{
                     color: activeTab === cat.id ? '#D4A017' : '#F5F5DC',
                     opacity: activeTab === cat.id ? 1 : 0.6,
+                    fontSize: isSticky ? '0.7rem' : '0.75rem',
                   }}
                   transition={{ duration: 0.3 }}
                 >
@@ -307,7 +314,8 @@ function StickyMicroNav({ activeTab, onTabChange }: { activeTab: string; onTabCh
           ))}
         </div>
       </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
 
