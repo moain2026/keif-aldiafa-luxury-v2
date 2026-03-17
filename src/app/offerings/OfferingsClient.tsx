@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform, animate, useScroll, useMotionTemplate } from "motion/react";
+import { useState, useCallback, useEffect } from "react";
+import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "motion/react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import {
@@ -215,115 +215,30 @@ function Lightbox({
 // Smart Micro-Grid Navigation Component
 // ─────────────────────────────────────────────
 function StickyMicroNav({ activeTab, onTabChange }: { activeTab: string; onTabChange: (id: string) => void }) {
-  const [isSticky, setIsSticky] = useState(false);
-  const navRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
-
-  useEffect(() => {
-    const unsubscribe = scrollY.onChange((latest) => {
-      if (containerRef.current) {
-        const containerTop = containerRef.current.getBoundingClientRect().top;
-        setIsSticky(containerTop <= 0);
-      }
-    });
-    return () => unsubscribe();
-  }, [scrollY]);
-
   return (
-    <div ref={containerRef} className="w-full">
-      <motion.div
-        ref={navRef}
-        className={`w-full transition-all duration-300 ${isSticky ? 'fixed top-0 left-0 right-0 z-50' : 'relative'}`}
-        animate={{
-          paddingTop: isSticky ? '12px' : '24px',
-          paddingBottom: isSticky ? '12px' : '24px',
-          background: isSticky ? 'rgba(15, 15, 15, 0.95)' : 'transparent',
-          backdropFilter: isSticky ? 'blur(16px)' : 'none',
-          borderBottom: isSticky ? '1px solid rgba(184, 134, 11, 0.15)' : 'none',
-        }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-5 gap-2 sm:gap-3">
-          {categories.map((cat, idx) => (
-            <motion.button
-              key={cat.id}
-              onClick={() => onTabChange(cat.id)}
-              className="relative group"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {/* Background with Glassmorphism */}
-              <motion.div
-                className="absolute inset-0 rounded-2xl transition-all duration-300"
-                animate={{
-                  background: activeTab === cat.id
-                    ? 'rgba(184, 134, 11, 0.2)'
-                    : 'rgba(0, 0, 0, 0.3)',
-                  border: activeTab === cat.id
-                    ? '1.5px solid rgba(184, 134, 11, 0.6)'
-                    : '1px solid rgba(184, 134, 11, 0.1)',
-                  boxShadow: activeTab === cat.id
-                    ? '0 0 20px rgba(184, 134, 11, 0.3)'
-                    : 'none',
-                }}
-              />
-
-              {/* Content Container - Vertical Stacking with Dynamic Height */}
-              <div className={`relative flex flex-col items-center justify-center w-full ${
-                isSticky ? 'gap-0 p-2 sm:p-2 h-12 sm:h-14' : 'justify-between gap-2 sm:gap-3 p-3 sm:p-4 h-full'
-              }`}>
-                {/* Icon - Animated Visibility with Staggered Transition */}
-                <motion.span
-                  className="text-3xl sm:text-4xl flex-shrink-0"
-                  animate={{
-                    opacity: isSticky ? 0 : 1,
-                    scale: isSticky ? 0.7 : (activeTab === cat.id ? 1.2 : 1),
-                    y: isSticky ? -20 : 0,
-                    pointerEvents: isSticky ? 'none' : 'auto',
-                    filter: activeTab === cat.id ? 'drop-shadow(0 0 8px rgba(184, 134, 11, 0.6))' : 'none',
-                  }}
-                  transition={{ type: 'spring', stiffness: 280, damping: 20, mass: 0.8, delay: 0 }}
-                  layout
-                >
-                  {cat.icon}
-                </motion.span>
-
-                {/* Label - Fluid Transition with Enhanced Text Shadow */}
-                <motion.p
-                  className="text-[10px] sm:text-xs text-center font-semibold leading-tight flex-shrink-0"
-                  style={{
-                    textShadow: '0 3px 10px rgba(0, 0, 0, 0.8), 0 0 16px rgba(184, 134, 11, 0.4), 0 1px 3px rgba(0, 0, 0, 0.5)',
-                  }}
-                  animate={{
-                    color: activeTab === cat.id ? '#D4A017' : '#F5F5DC',
-                    opacity: activeTab === cat.id ? 1 : 0.7,
-                    fontSize: isSticky ? '0.7rem' : '0.75rem',
-                  }}
-                  transition={{ type: 'spring', stiffness: 280, damping: 20, mass: 0.8, delay: 0.05 }}
-                  layout
-                >
-                  {cat.label}
-                </motion.p>
-              </div>
-
-              {/* Active Indicator Line - Dynamic Positioning */}
-              {activeTab === cat.id && (
-                <motion.div
-                  layoutId="activeIndicator"
-                  className={`absolute left-0 right-0 h-0.5 bg-gradient-to-r from-[#B8860B] to-[#D4A017] ${
-                    isSticky ? 'bottom-1.5 sm:bottom-2' : 'bottom-0'
-                  }`}
-                  style={{ borderRadius: '2px' }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                />
-              )}
-            </motion.button>
-          ))}
-        </div>
+    <div className="w-full container mx-auto px-4 mb-8">
+      <div className="grid grid-cols-5 gap-3">
+        {categories.map((cat) => (
+          <button
+            key={cat.id}
+            onClick={() => onTabChange(cat.id)}
+            className={`relative group p-3 rounded-2xl transition-all duration-300 flex flex-col items-center justify-center h-full ${
+              activeTab === cat.id
+                ? 'bg-[rgba(184,134,11,0.2)] border-[1.5px] border-[rgba(184,134,11,0.6)] shadow-[0_0_20px_rgba(184,134,11,0.3)]'
+                : 'bg-[rgba(0,0,0,0.3)] border-[1px] border-[rgba(184,134,11,0.1)]'
+            }`}
+          >
+            <span className="text-3xl sm:text-4xl flex-shrink-0 mb-1">{cat.icon}</span>
+            <p className="text-[10px] sm:text-xs text-center font-semibold leading-tight flex-shrink-0"
+               style={{ textShadow: '0 3px 10px rgba(0, 0, 0, 0.8), 0 0 16px rgba(184, 134, 11, 0.4), 0 1px 3px rgba(0, 0, 0, 0.5)' }}>
+              {cat.label}
+            </p>
+            {activeTab === cat.id && (
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#B8860B] to-[#D4A017] rounded-b-2xl" />
+            )}
+          </button>
+        ))}
       </div>
-      </motion.div>
     </div>
   );
 }
