@@ -110,7 +110,7 @@ export default function Navbar({ deferredPrompt, setDeferredPrompt }: NavbarProp
               transition={{ type: "spring", stiffness: 300 }}
               className="relative"
             >
-              <DallahLogo size={40} />
+              <DallahLogo size={60} />
               <motion.div
                 className="absolute -inset-1 rounded-full"
                 style={{ background: "radial-gradient(circle, rgba(184,134,11,0.15) 0%, transparent 70%)" }}
