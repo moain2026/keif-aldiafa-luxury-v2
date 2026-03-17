@@ -268,15 +268,24 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
                       : 'none',
                   }}
                 />
-                <div className="relative flex flex-col items-center justify-center p-2 sm:p-3 h-full min-h-[50px] sm:min-h-[60px]">
+                <div className="relative flex flex-col items-center justify-center p-2 sm:p-4 h-full min-h-[65px] sm:min-h-[80px]">
+                  <motion.span 
+                    className="text-lg sm:text-xl mb-1.5"
+                    animate={{ 
+                      scale: activeTab === category.id ? 1.2 : 1,
+                      filter: activeTab === category.id ? 'drop-shadow(0 0 8px rgba(184, 134, 11, 0.5))' : 'grayscale(0.5) opacity(0.7)'
+                    }}
+                  >
+                    {category.icon}
+                  </motion.span>
                   <motion.p
-                    className="text-[9px] sm:text-[10px] text-center font-medium leading-tight"
+                    className="text-[10px] sm:text-[12px] text-center font-bold leading-tight"
                     style={{
                       textShadow: '0 1px 4px rgba(0, 0, 0, 0.5), 0 0 8px rgba(184, 134, 11, 0.2)',
                     }}
                     animate={{
                       color: activeTab === category.id ? '#D4A017' : '#F5F5DC',
-                      opacity: activeTab === category.id ? 1 : 0.65,
+                      opacity: activeTab === category.id ? 1 : 0.8,
                     }}
                     transition={{ type: 'spring', stiffness: 280, damping: 20, mass: 0.8, delay: 0.05 }}
                     layout
