@@ -277,12 +277,12 @@ function StickyMicroNav({ activeTab, onTabChange }: { activeTab: string; onTabCh
                   className="text-3xl sm:text-4xl overflow-hidden"
                   animate={{
                     opacity: isSticky ? 0 : 1,
-                    scale: isSticky ? 0 : (activeTab === cat.id ? 1.2 : 1),
-                    height: isSticky ? 0 : 'auto',
-                    marginBottom: isSticky ? 0 : '0.25rem',
+                    scale: isSticky ? 0.8 : (activeTab === cat.id ? 1.2 : 1),
+                    y: isSticky ? -12 : 0,
                     filter: activeTab === cat.id ? 'drop-shadow(0 0 8px rgba(184, 134, 11, 0.6))' : 'none',
                   }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 25, mass: 1 }}
+                  layout
                 >
                   {cat.icon}
                 </motion.span>
@@ -294,8 +294,10 @@ function StickyMicroNav({ activeTab, onTabChange }: { activeTab: string; onTabCh
                     color: activeTab === cat.id ? '#D4A017' : '#F5F5DC',
                     opacity: activeTab === cat.id ? 1 : 0.6,
                     fontSize: isSticky ? '0.7rem' : '0.75rem',
+                    y: isSticky ? -4 : 0,
                   }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 25, mass: 1 }}
+                  layout
                 >
                   {cat.label}
                 </motion.p>
