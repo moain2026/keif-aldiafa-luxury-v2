@@ -247,32 +247,16 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
                 />
 
                 {/* Content Container */}
-                <div className="relative flex flex-col items-center justify-center p-3 sm:p-4 h-full">
-                  {/* Icon - Animated Visibility */}
-                  <motion.span
-                    className="text-3xl sm:text-4xl overflow-hidden"
-                    animate={{
-                      opacity: isSticky ? 0 : 1,
-                      scale: isSticky ? 0.8 : (activeTab === idx ? 1.3 : 1),
-                      y: isSticky ? -14 : 0,
-                      filter: activeTab === idx ? 'drop-shadow(0 0 12px rgba(184, 134, 11, 0.8))' : 'none',
-                    }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 25, mass: 1 }}
-                    layout
-                  >
-                    {cat.icon}
-                  </motion.span>
-
-                  {/* Label */}
+                <div className="relative flex flex-col items-center justify-center p-3 sm:p-4 h-full min-h-[60px] sm:min-h-[70px]">
+                  {/* Label Only - Text-based Design */}
                   <motion.p
                     className="text-[10px] sm:text-xs text-center font-medium leading-tight"
                     animate={{
                       color: activeTab === idx ? '#D4A017' : '#F5F5DC',
                       opacity: activeTab === idx ? 1 : 0.65,
                       fontSize: isSticky ? '0.7rem' : '0.75rem',
-                      y: isSticky ? -4 : 0,
                     }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 25, mass: 1 }}
+                    transition={{ type: 'spring', stiffness: 280, damping: 20, mass: 0.8 }}
                     layout
                   >
                     {cat.label}
