@@ -270,11 +270,11 @@ function StickyMicroNav({ activeTab, onTabChange }: { activeTab: string; onTabCh
                 }}
               />
 
-              {/* Content Container */}
-              <div className="relative flex flex-col items-center justify-center p-3 sm:p-4 h-full">
+              {/* Content Container - Vertical Stacking */}
+              <div className="relative flex flex-col items-center justify-between gap-2 sm:gap-3 p-3 sm:p-4 h-full w-full">
                 {/* Icon - Animated Visibility with Staggered Transition */}
                 <motion.span
-                  className="text-3xl sm:text-4xl overflow-hidden absolute"
+                  className="text-3xl sm:text-4xl flex-shrink-0"
                   animate={{
                     opacity: isSticky ? 0 : 1,
                     scale: isSticky ? 0.7 : (activeTab === cat.id ? 1.2 : 1),
@@ -288,17 +288,16 @@ function StickyMicroNav({ activeTab, onTabChange }: { activeTab: string; onTabCh
                   {cat.icon}
                 </motion.span>
 
-                {/* Label - Fluid Transition with Text Shadow */}
+                {/* Label - Fluid Transition with Enhanced Text Shadow */}
                 <motion.p
-                  className="text-[10px] sm:text-xs text-center font-medium leading-tight relative"
+                  className="text-[10px] sm:text-xs text-center font-semibold leading-tight flex-shrink-0"
                   style={{
-                    textShadow: '0 2px 8px rgba(0, 0, 0, 0.6), 0 0 12px rgba(184, 134, 11, 0.3)',
+                    textShadow: '0 3px 10px rgba(0, 0, 0, 0.8), 0 0 16px rgba(184, 134, 11, 0.4), 0 1px 3px rgba(0, 0, 0, 0.5)',
                   }}
                   animate={{
                     color: activeTab === cat.id ? '#D4A017' : '#F5F5DC',
-                    opacity: activeTab === cat.id ? 1 : 0.6,
+                    opacity: activeTab === cat.id ? 1 : 0.7,
                     fontSize: isSticky ? '0.7rem' : '0.75rem',
-                    y: isSticky ? 0 : 0,
                   }}
                   transition={{ type: 'spring', stiffness: 280, damping: 20, mass: 0.8, delay: 0.05 }}
                   layout
