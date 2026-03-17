@@ -212,33 +212,31 @@ export function HomePageClient() {
             </motion.div>
 
             {/* Description */}
+            {/* Description - Updated Luxury Variant */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.8 }}
-              className="max-w-xl mx-auto"
+              className="max-w-2xl mx-auto w-full px-4"
             >
               <p
-                className="text-[#F5F5DC]/85 mb-4 font-amiri"
-                style={{
-                  fontSize: "clamp(0.95rem, 2vw, 1.1rem)",
-                  lineHeight: 1.8,
-                  fontWeight: 400,
-                }}
+                className="text-cream/90 mb-6 font-tajawal text-[clamp(1rem,2vw,1.15rem)] leading-[1.8] font-light"
               >
-                نقدم خدمات ضيافة متكاملة تلبي تطلعات الأفراد، وترتقي بفعاليات الشركات والمؤسسات والجهات الحكومية.
+                نبتكر تجارب ضيافة استثنائية تلبي تطلعات النخبة، ونرتقي بمعايير الفخامة لفعاليات الشركات والمحافل الحكومية والخاصة.
               </p>
-              <p
-                className="text-[#D4A017]/90 font-amiri"
-                style={{
-                  fontSize: "clamp(0.9rem, 1.8vw, 1rem)",
-                  lineHeight: 1.9,
-                  fontWeight: 400,
-                  letterSpacing: "0.02em",
-                }}
-              >
-                تغطية شاملة لـ: <span className="text-[#FFD700]">المعارض</span> | <span className="text-[#FFD700]">المؤتمرات</span> | <span className="text-[#FFD700]">الاجتماعات</span> | <span className="text-[#FFD700]">الفعاليات الوطنية</span> | <span className="text-[#FFD700]">المناسبات الخاصة</span>
-              </p>
+              
+              {/* Events List - Glowing Gold Dots Separators */}
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 font-tajawal text-[clamp(0.85rem,1.5vw,0.95rem)] font-medium">
+                <span className="text-gold-shimmer tracking-wide">المعارض</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-gold/60 shadow-[0_0_8px_rgba(184,134,11,0.6)]"></span>
+                <span className="text-gold-shimmer tracking-wide">المؤتمرات</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-gold/60 shadow-[0_0_8px_rgba(184,134,11,0.6)]"></span>
+                <span className="text-gold-shimmer tracking-wide">الاجتماعات</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-gold/60 shadow-[0_0_8px_rgba(184,134,11,0.6)]"></span>
+                <span className="text-gold-shimmer tracking-wide">الفعاليات الوطنية</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-gold/60 shadow-[0_0_8px_rgba(184,134,11,0.6)]"></span>
+                <span className="text-gold-shimmer tracking-wide">المناسبات الخاصة</span>
+              </div>
             </motion.div>
           </motion.div>
 
