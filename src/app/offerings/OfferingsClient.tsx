@@ -308,11 +308,13 @@ function StickyMicroNav({ activeTab, onTabChange }: { activeTab: string; onTabCh
                 </motion.p>
               </div>
 
-              {/* Active Indicator Line */}
+              {/* Active Indicator Line - Dynamic Positioning */}
               {activeTab === cat.id && (
                 <motion.div
                   layoutId="activeIndicator"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#B8860B] to-[#D4A017]"
+                  className={`absolute left-0 right-0 h-0.5 bg-gradient-to-r from-[#B8860B] to-[#D4A017] ${
+                    isSticky ? 'bottom-1.5 sm:bottom-2' : 'bottom-0'
+                  }`}
                   style={{ borderRadius: '2px' }}
                   transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                 />
